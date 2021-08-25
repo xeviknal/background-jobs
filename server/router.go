@@ -23,7 +23,7 @@ func GetRoutes() Routes {
 			HandleFunc: handlers.Root,
 		},
 		{
-			Path:       "/jobs/create",
+			Path:       "/objects/{object_id:[0-9]+}/jobs/create",
 			Method:     "POST",
 			HandleFunc: handlers.JobsCreateHandler,
 		},
