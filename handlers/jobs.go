@@ -38,3 +38,7 @@ func JobsCreateHandler(w http.ResponseWriter, r *http.Request) {
 
 	RespondWithJson(w, http.StatusOK, job)
 }
+
+func JobsGetHandler(w http.ResponseWriter, r *http.Request) {
+	RespondWithJson(w, http.StatusOK, "Coming soon..")
+}
