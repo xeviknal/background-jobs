@@ -17,6 +17,10 @@ func CreateScheme() error {
 	return dbmap.CreateTablesIfNotExists()
 }
 
+func DropTables() error {
+	return dbmap.DropTablesIfExists()
+}
+
 func getTables() tables {
 	return tables{
 		{

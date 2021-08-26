@@ -13,10 +13,10 @@ import (
 func TestJobsCreateHandler(t *testing.T) {
 	asserter := assert.New(t)
 
-	s := setupEndpoint(t)
+	s := setupEndpoint("/objects/{object_id}/jobs/create", JobsCreateHandler)
 	defer s.Close()
 
-	resp, err := http.Get(fmt.Sprintf("%s/jobs/create", s.URL))
+	resp, err := http.Get(fmt.Sprintf("%s/objects/%d/jobs/create", s.URL, 10))
 	if err != nil {
 		asserter.Fail(err.Error())
 	}
@@ -24,8 +24,8 @@ func TestJobsCreateHandler(t *testing.T) {
 	asserter.Equal(resp.StatusCode, http.StatusOK)
 }
 
-func setupEndpoint(t *testing.T) *httptest.Server {
+func setupEndpoint(route string, handler http.HandlerFunc) *httptest.Server {
 	mr := mux.NewRouter()
-	mr.HandleFunc("/jobs/create", JobsCreateHandler)
+	mr.HandleFunc(route, handler)
 	return httptest.NewServer(mr)
 }
