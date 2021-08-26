@@ -3,10 +3,13 @@ package server
 import (
 	"context"
 	"log"
+	"math/rand"
 	"net/http"
 	"time"
 
 	"github.com/gorilla/mux"
+
+	"github.com/xeviknal/background-jobs/database"
 )
 
 type Server struct {
@@ -36,6 +39,14 @@ func NewServer() *Server {
 
 // Start method starts all the necessary services to have the server fully working
 func (s *Server) Start() {
+	// Starting a seed for randoms
+	rand.Seed(time.Now().UnixNano())
+
+	// Init Database
+	if db := database.GetDb(); db == nil {
+		log.Fatalln("Errors initializing database systems")
+	}
+
 	// Starting the server in background
 	go func() {
 		log.Printf("Starting server at %s", s.httpServer.Addr)
