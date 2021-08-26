@@ -27,5 +27,10 @@ func GetRoutes() Routes {
 			Method:     "POST",
 			HandleFunc: handlers.JobsCreateHandler,
 		},
+		{
+			Path:       "/jobs/{id:[0-9]+}",
+			Method:     "GET",
+			HandleFunc: handlers.JobsGetHandler,
+		},
 	}
 }
