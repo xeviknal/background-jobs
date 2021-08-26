@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"fmt"
 	"gopkg.in/gorp.v1"
 	"log"
 	"os"
@@ -11,6 +12,13 @@ import (
 )
 
 var dbmap *gorp.DbMap
+var user, pwd, db string
+
+func SetConnectionConfig(u, p, d string) {
+	user = u
+	pwd = p
+	db = d
+}
 
 // Singleton for access to the DB config
 func GetDb() *gorp.DbMap {
@@ -22,7 +30,7 @@ func GetDb() *gorp.DbMap {
 }
 
 func NewDatabase() *gorp.DbMap {
-	db, err := sql.Open("mysql", "jobs:jobs@tcp(localhost)/jobs?parseTime=true")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(localhost)/%s?parseTime=true", user, pwd, db))
 	if err != nil {
 		log.Fatal(err)
 		return dbmap
@@ -40,9 +48,16 @@ func NewDatabase() *gorp.DbMap {
 	dbmap.TraceOn("[gorp]", log.New(os.Stdout, "jobs:", log.Lmicroseconds))
 
 	// Register and create the tables
+	// This should go outside the startup process. Not to mess with databases.
 	if err := CreateScheme(); err != nil {
 		log.Fatalf("Error creating the scheme and tables: %v", err)
 		return dbmap
 	}
+
 	return dbmap
+}
+
+func Clean() {
+	DropTables()
+	dbmap = nil
 }

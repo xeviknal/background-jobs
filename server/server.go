@@ -42,6 +42,9 @@ func (s *Server) Start() {
 	// Starting a seed for randoms
 	rand.Seed(time.Now().UnixNano())
 
+	// Setting appropriate db connection
+	database.SetConnectionConfig("jobs", "jobs", "jobs")
+
 	// Init Database
 	if db := database.GetDb(); db == nil {
 		log.Fatalln("Errors initializing database systems")
