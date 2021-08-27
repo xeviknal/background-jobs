@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/xeviknal/background-jobs/database"
+	"github.com/xeviknal/background-commons/database"
 )
 
 func TestMain(m *testing.M) {
