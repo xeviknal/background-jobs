@@ -62,6 +62,9 @@ func (s *Server) Start() {
 
 // Stop method closes all the necessary to gracefully shutdown the server
 func (s *Server) Stop() {
+	// Closing pool of connections
+	database.Close()
+
 	// Create a deadline to wait for.
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
