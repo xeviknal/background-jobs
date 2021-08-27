@@ -7,8 +7,8 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/xeviknal/background-jobs/database"
-	"github.com/xeviknal/background-jobs/models"
+	"github.com/xeviknal/background-commons/database"
+	"github.com/xeviknal/background-commons/models"
 )
 
 func JobsCreateHandler(w http.ResponseWriter, r *http.Request) {

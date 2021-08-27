@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/xeviknal/background-jobs/database"
+	"github.com/xeviknal/background-commons/database"
 )
 
 type Server struct {

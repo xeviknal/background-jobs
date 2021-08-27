@@ -9,8 +9,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/xeviknal/background-jobs/database"
-	"github.com/xeviknal/background-jobs/models"
+	"github.com/xeviknal/background-commons/database"
+	"github.com/xeviknal/background-commons/models"
 )
 
 func TestJobsCreateHandler(t *testing.T) {
