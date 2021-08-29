@@ -62,3 +62,10 @@ curl -X POST http://$CLUSTER_IP:$PORT/objects/14/jobs/create
 # Checking its status
 curl http://$CLUSTER_IP:$PORT/jobs/362
 ```
+
+## TODO:
+
+- [ ] Implement retries.
+- [ ] Fix unit testing. It uses shared test db. 
+- [ ] Add e2e tests.
+- [ ] Add a UI to see the status of the jobs.
