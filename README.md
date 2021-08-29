@@ -5,9 +5,9 @@ A demo app to simulate background job processing
 
 This solutions is composed out of two components:
 1. **Background Jobs**: A web server with an API for Creating and Getting Jobs.
-2. **Backgournd Processing**: A infinite process that processes the background jobs introduced by the previous componet. [See source](github.com/xeviknal/background-processing).
+2. **Backgournd Processing**: A infinite process that processes the background jobs introduced by the previous componet. [See source](http://github.com/xeviknal/background-processing).
 
-There is a third component, called [Background commons](github.com/xeviknal/background-commons), that is a dependency to share logic from both components mentioned above.
+There is a third component, called [Background commons](http://github.com/xeviknal/background-commons), that is a dependency to share logic from both components mentioned above.
 
 The two services are cloud-native: containerized and ready to deploy into a kubernetes cluster.
 
@@ -27,7 +27,7 @@ kubectl apply -f build.yaml
 ```
 
 #### Installing the database
-This solution requires a database to persist the different states of a job. In order to install it, the [Background commons](github.com/xeviknal/background-commons) repo contains a helm chart with a MariaDB installation. The DB is installed into `mariadb` namespace.
+This solution requires a database to persist the different states of a job. In order to install it, the [Background commons](http://github.com/xeviknal/background-commons) repo contains a helm chart with a MariaDB installation. The DB is installed into `mariadb` namespace.
 
 ```bash
 kubectl apply -f mariadb-helm-chart.yaml
