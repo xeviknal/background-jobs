@@ -27,7 +27,19 @@ func JobsCreateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Create the object: sleep between 0 and 10s
+	// Constrain: only allow job execution for the same object after 5 minutes
+	count, err := db.SelectInt("SELECT count(*) FROM jobs WHERE object_id = ? AND TIMEDIFF(NOW(), created_at) < SEC_TO_TIME(?)", objectId, 5*60)
+	if err != nil {
+		RespondWithJson(w, http.StatusInternalServerError, "error fetching jobs")
+		return
+	}
+
+	if count > 0 {
+		RespondWithJson(w, http.StatusUnprocessableEntity, fmt.Sprintf("can't create a job for the object #%d. Limit reached: 1 job every 5 minutes for the same object_id", objectId))
+		return
+	}
+
+	// Create the object
 	job := models.NewJob(objectId)
 
 	// Save it
