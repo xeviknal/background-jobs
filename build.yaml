@@ -9,6 +9,21 @@ metadata:
   name: background-jobs
   namespace: background-jobs
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: background-jobs
+  namespace: background-jobs
+spec:
+  type: NodePort
+  selector:
+    app: background-jobs
+    version: v0.1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
