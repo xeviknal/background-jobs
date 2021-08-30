@@ -68,3 +68,6 @@ curl http://$CLUSTER_IP:$PORT/jobs/362
 - [ ] Fix unit testing. It uses shared test db. 
 - [ ] Add e2e tests.
 - [ ] Add a UI to see the status of the jobs.
+- [ ] Use a migration tool to manage the evolution of the database.
+- [ ] Fix timezone alignment in development.
+- [ ] Add configmap to deal with settings such as timeouts, db, thresholds...
